@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Site;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
+class AdminController extends Controller
+{
+    /**
+     * GET /admin
+     * List all sites across all users, with optional search.
+     */
+    public function index(Request $request): View
+    {
+        $search = $request->query('search', '');
+
+        $query = Site::with('user')
+            ->orderBy('created_at', 'desc');
+
+        if ($search !== '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('url', 'like', '%' . $search . '%')
+                  ->orWhere('activated_url', 'like', '%' . $search . '%')
+                  ->orWhere('license_key', 'like', '%' . $search . '%')
+                  ->orWhereHas('user', function ($uq) use ($search) {
+                      $uq->where('email', 'like', '%' . $search . '%');
+                  });
+            });
+        }
+
+        $sites = $query->paginate(15)->withQueryString();
+
+        $totalSites    = Site::count();
+        $activeSites   = Site::active()->count();
+        $suspendedSites = Site::suspended()->count();
+
+        return view('admin.index', compact('sites', 'search', 'totalSites', 'activeSites', 'suspendedSites'));
+    }
+
+    /**
+     * GET /admin/sites/{site}
+     * Show full details for a single site.
+     */
+    public function show(Site $site): View
+    {
+        $site->load(['user', 'gamToken', 'allowedSubdomains']);
+
+        return view('admin.show', compact('site'));
+    }
+
+    /**
+     * POST /admin/sites/{site}/suspend
+     * Toggle suspension state.
+     */
+    public function suspend(Site $site): RedirectResponse
+    {
+        if ($site->isSuspended()) {
+            $site->update(['suspended_at' => null]);
+            $message = "Site \"{$site->url}\" has been unsuspended.";
+        } else {
+            $site->update(['suspended_at' => now()]);
+            $message = "Site \"{$site->url}\" has been suspended.";
+        }
+
+        return redirect()->back()->with('success', $message);
+    }
+
+    /**
+     * DELETE /admin/sites/{site}
+     * Permanently delete a site and all related records.
+     */
+    public function destroy(Site $site): RedirectResponse
+    {
+        $url = $site->url;
+
+        // Delete related records first
+        $site->gamToken()?->delete();
+        $site->allowedSubdomains()->delete();
+        $site->delete();
+
+        return redirect()->route('admin.index')->with('success', "Site \"{$url}\" has been permanently deleted.");
+    }
+
+    /**
+     * POST /admin/sites/{site}/note
+     * Save an admin note against the site.
+     */
+    public function updateNote(Request $request, Site $site): RedirectResponse
+    {
+        $request->validate([
+            'admin_note' => ['nullable', 'string', 'max:5000'],
+        ]);
+
+        $site->update(['admin_note' => $request->input('admin_note')]);
+
+        return redirect()->back()->with('success', 'Admin note saved.');
+    }
+}
