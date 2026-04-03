@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
 // Super-admin routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('users.destroy');
     Route::get('/sites/{site}', [AdminController::class, 'show'])->name('sites.show');
     Route::post('/sites/{site}/suspend', [AdminController::class, 'suspend'])->name('sites.suspend');
     Route::delete('/sites/{site}', [AdminController::class, 'destroy'])->name('sites.destroy');

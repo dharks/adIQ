@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\AccountReinstatedMail;
 use App\Mail\AccountSuspendedMail;
 use App\Models\Site;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -20,27 +21,39 @@ class AdminController extends Controller
     {
         $search = $request->query('search', '');
 
-        $query = Site::with('user')
+        $query = User::where('is_admin', false)
+            ->with(['sites'])
             ->orderBy('created_at', 'desc');
 
         if ($search !== '') {
             $query->where(function ($q) use ($search) {
-                $q->where('url', 'like', '%' . $search . '%')
-                  ->orWhere('activated_url', 'like', '%' . $search . '%')
-                  ->orWhere('license_key', 'like', '%' . $search . '%')
-                  ->orWhereHas('user', function ($uq) use ($search) {
-                      $uq->where('email', 'like', '%' . $search . '%');
+                $q->where('email', 'like', '%' . $search . '%')
+                  ->orWhere('name', 'like', '%' . $search . '%')
+                  ->orWhereHas('sites', function ($sq) use ($search) {
+                      $sq->where('url', 'like', '%' . $search . '%')
+                         ->orWhere('domain', 'like', '%' . $search . '%')
+                         ->orWhere('license_key', 'like', '%' . $search . '%');
                   });
             });
         }
 
-        $sites = $query->paginate(15)->withQueryString();
-
-        $totalSites    = Site::count();
-        $activeSites   = Site::active()->count();
+        $users          = $query->paginate(15)->withQueryString();
+        $totalUsers     = User::where('is_admin', false)->count();
+        $activeSites    = Site::active()->count();
         $suspendedSites = Site::suspended()->count();
 
-        return view('admin.index', compact('sites', 'search', 'totalSites', 'activeSites', 'suspendedSites'));
+        return view('admin.index', compact('users', 'search', 'totalUsers', 'activeSites', 'suspendedSites'));
+    }
+
+    /**
+     * DELETE /admin/users/{user}
+     * Delete a user who has no sites yet.
+     */
+    public function destroyUser(User $user): RedirectResponse
+    {
+        $name = $user->email;
+        $user->delete();
+        return redirect()->route('admin.index')->with('success', "User \"{$name}\" has been deleted.");
     }
 
     /**
