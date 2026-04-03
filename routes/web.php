@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PluginReleaseController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -73,7 +74,11 @@ Route::middleware('auth')->group(function () {
 // Super-admin routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/users/{user}', [AdminController::class, 'showUser'])->name('users.show');
     Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('users.destroy');
+    Route::get('/plugin', [PluginReleaseController::class, 'index'])->name('plugin');
+    Route::post('/plugin', [PluginReleaseController::class, 'store'])->name('plugin.store');
+    Route::delete('/plugin/{release}', [PluginReleaseController::class, 'destroy'])->name('plugin.destroy');
     Route::get('/sites/{site}', [AdminController::class, 'show'])->name('sites.show');
     Route::post('/sites/{site}/suspend', [AdminController::class, 'suspend'])->name('sites.suspend');
     Route::delete('/sites/{site}', [AdminController::class, 'destroy'])->name('sites.destroy');

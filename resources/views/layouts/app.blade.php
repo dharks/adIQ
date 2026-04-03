@@ -824,11 +824,18 @@
             <hr class="nav-divider">
             <div class="nav-section-label">Admin</div>
             <a href="{{ route('admin.index') }}"
-                class="nav-link {{ request()->routeIs('admin.*') ? 'active' : '' }}">
+                class="nav-link {{ request()->routeIs('admin.index') || request()->routeIs('admin.sites.*') || request()->routeIs('admin.users.*') ? 'active' : '' }}">
                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
                 Publisher Console
+            </a>
+            <a href="{{ route('admin.plugin') }}"
+                class="nav-link {{ request()->routeIs('admin.plugin*') ? 'active' : '' }}">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                </svg>
+                Plugin Releases
             </a>
             @endif
         </nav>

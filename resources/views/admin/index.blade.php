@@ -125,9 +125,9 @@
                 </td>
                 <td>
                     <div style="display:flex;gap:5px;align-items:center;white-space:nowrap;">
-                        @if($primarySite)
-                            <a href="{{ route('admin.sites.show', $primarySite) }}" class="btn btn-xs btn-outline">View</a>
+                        <a href="{{ route('admin.users.show', $user) }}" class="btn btn-xs btn-outline">View</a>
 
+                        @if($primarySite)
                             <form method="POST" action="{{ route('admin.sites.suspend', $primarySite) }}">
                                 @csrf
                                 <button type="submit"
@@ -137,24 +137,15 @@
                                     {{ $isAnySuspended ? 'Reinstate' : 'Suspend' }}
                                 </button>
                             </form>
-
-                            <form method="POST" action="{{ route('admin.sites.destroy', $primarySite) }}">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-xs btn-danger"
-                                    onclick="return confirm('Permanently delete this publisher and all data? This cannot be undone.')">
-                                    Delete
-                                </button>
-                            </form>
-                        @else
-                            <span style="font-size:12px;color:var(--g400);">Registered</span>
-                            <form method="POST" action="{{ route('admin.users.destroy', $user) }}">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="btn btn-xs btn-danger"
-                                    onclick="return confirm('Delete this user account? This cannot be undone.')">
-                                    Delete
-                                </button>
-                            </form>
                         @endif
+
+                        <form method="POST" action="{{ route('admin.users.destroy', $user) }}">
+                            @csrf @method('DELETE')
+                            <button type="submit" class="btn btn-xs btn-danger"
+                                onclick="return confirm('Permanently delete this user and all their data? This cannot be undone.')">
+                                Delete
+                            </button>
+                        </form>
                     </div>
                 </td>
             </tr>

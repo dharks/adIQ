@@ -46,12 +46,28 @@ class AdminController extends Controller
     }
 
     /**
+     * GET /admin/users/{user}
+     * Show full profile for any registered user, with or without sites.
+     */
+    public function showUser(User $user): View
+    {
+        $user->load(['sites.allowedSubdomains', 'sites.gamToken']);
+        return view('admin.user', compact('user'));
+    }
+
+    /**
      * DELETE /admin/users/{user}
-     * Delete a user who has no sites yet.
+     * Delete a user and all their associated data.
      */
     public function destroyUser(User $user): RedirectResponse
     {
         $name = $user->email;
+        // Clean up all related site data first
+        foreach ($user->sites as $site) {
+            $site->gamToken()?->delete();
+            $site->allowedSubdomains()->delete();
+            $site->delete();
+        }
         $user->delete();
         return redirect()->route('admin.index')->with('success', "User \"{$name}\" has been deleted.");
     }
