@@ -314,11 +314,11 @@
             <a href="#features" class="nav-link">Features</a>
             <a href="#how-it-works" class="nav-link">How it works</a>
             <a href="#technical" class="nav-link">Technical</a>
-            <?php if (auth()->guard()->check()): ?>
-                <a href="<?php echo e(route('dashboard')); ?>" class="nav-link">Dashboard</a>
+            <?php if(auth()->guard()->check()): ?>
+            <a href="<?php echo e(route('dashboard')); ?>" class="nav-link">Dashboard</a>
             <?php else: ?>
-                <a href="<?php echo e(route('login')); ?>" class="nav-link">Sign In</a>
-                <a href="<?php echo e(route('register')); ?>" class="nav-cta">Get Started</a>
+            <a href="<?php echo e(route('login')); ?>" class="nav-link">Sign In</a>
+            <a href="<?php echo e(route('register')); ?>" class="nav-cta">Get Started</a>
             <?php endif; ?>
         </div>
         <button class="nav-hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')" aria-label="Open menu">
@@ -338,14 +338,14 @@
             <a href="#features" class="mobile-nav-link" onclick="document.getElementById('mobile-menu').classList.remove('open')">Features</a>
             <a href="#how-it-works" class="mobile-nav-link" onclick="document.getElementById('mobile-menu').classList.remove('open')">How it works</a>
             <a href="#technical" class="mobile-nav-link" onclick="document.getElementById('mobile-menu').classList.remove('open')">Technical</a>
-            <?php if (auth()->guard()->check()): ?>
-                <a href="<?php echo e(route('dashboard')); ?>" class="mobile-nav-link">Dashboard</a>
+            <?php if(auth()->guard()->check()): ?>
+            <a href="<?php echo e(route('dashboard')); ?>" class="mobile-nav-link">Dashboard</a>
             <?php else: ?>
-                <a href="<?php echo e(route('login')); ?>" class="mobile-nav-link">Sign In</a>
+            <a href="<?php echo e(route('login')); ?>" class="mobile-nav-link">Sign In</a>
             <?php endif; ?>
         </div>
-        <?php if (auth()->guard()->guest()): ?>
-            <a href="<?php echo e(route('register')); ?>" class="mobile-nav-cta">Get Started →</a>
+        <?php if(auth()->guard()->guest()): ?>
+        <a href="<?php echo e(route('register')); ?>" class="mobile-nav-cta">Get Started →</a>
         <?php endif; ?>
     </div>
 
@@ -389,5 +389,4 @@
     <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 
-</html>
-<?php /**PATH /Users/dharks/Documents/web-projects/adiq-site/resources/views/layouts/marketing.blade.php ENDPATH**/ ?>
+</html><?php /**PATH /Users/dharks/Documents/web-projects/adiq-site/resources/views/layouts/marketing.blade.php ENDPATH**/ ?>

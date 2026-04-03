@@ -1154,5 +1154,4 @@
 </section>
 
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.marketing', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /Users/dharks/Documents/web-projects/adiq-site/resources/views/home.blade.php ENDPATH**/ ?>
