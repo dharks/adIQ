@@ -27,7 +27,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/plugin/version',  [PluginController::class, 'version']);
     Route::get('/plugin/download', [PluginController::class, 'download']);
 
-    // Protected endpoints — require valid, domain-verified license key
+    // Protected endpoints - require valid, domain-verified license key
     Route::middleware('license.valid')->group(function () {
         // GAM proxy
         Route::get('/gam/adunits',             [GamController::class, 'adUnits']);

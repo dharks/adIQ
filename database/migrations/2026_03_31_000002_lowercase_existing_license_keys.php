@@ -12,6 +12,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        // Lowercasing is irreversible — original casing is not stored
+        // Lowercasing is irreversible - original casing is not stored
     }
 };

@@ -174,7 +174,6 @@ class GamApiService
             }
 
             $pageToken = $response->json('nextPageToken');
-
         } while (!empty($pageToken));
 
         $this->assignFullPaths($units);
@@ -184,7 +183,7 @@ class GamApiService
 
     /**
      * Assign a hierarchical fullPath to every unit in a flat list by walking
-     * each unit's parent chain — mirrors the JS buildTree/assignPaths logic.
+     * each unit's parent chain - mirrors the JS buildTree/assignPaths logic.
      *
      * Root container units (ca-pub-XXXX) are excluded from the path, exactly
      * as the JS isRootContainer unwrap does.
@@ -259,11 +258,11 @@ class GamApiService
                 }
             }
 
-            // Root unit has no parentAdUnit — stop here without adding its code
+            // Root unit has no parentAdUnit - stop here without adding its code
             $parent = $unit['parentAdUnit'] ?? '';
             if (empty($parent)) break;
 
-            // Not the root — include this unit's code in the path
+            // Not the root - include this unit's code in the path
             if (!empty($code)) {
                 array_unshift($chain, $code);
             }
@@ -276,7 +275,7 @@ class GamApiService
         if (empty($chain)) return null;
 
         // Strip any leading AdSense/container codes (e.g. ca-pub-XXXX) from the
-        // front of the chain — mirrors the JS buildTree isRootContainer unwrap.
+        // front of the chain - mirrors the JS buildTree isRootContainer unwrap.
         while (!empty($chain) && preg_match('/^ca-pub-\d+:?$/i', $chain[0])) {
             array_shift($chain);
         }

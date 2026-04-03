@@ -45,7 +45,7 @@ class SubdomainController extends Controller
         }
 
         $validated = $request->validate([
-            // Only the prefix part — letters, numbers, hyphens, no dots
+            // Only the prefix part - letters, numbers, hyphens, no dots
             'subdomain' => [
                 'required',
                 'string',

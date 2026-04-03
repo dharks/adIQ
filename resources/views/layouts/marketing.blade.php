@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'adIQ by Percivo — Publisher Ad Management for WordPress')</title>
+    <title>@yield('title', 'adIQ by Percivo - Publisher Ad Management for WordPress')</title>
     <meta name="description" content="@yield('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified for WordPress publishers.')">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Percivo">
@@ -22,14 +22,14 @@
     {{-- Open Graph --}}
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="adIQ by Percivo">
-    <meta property="og:title" content="@yield('title', 'adIQ by Percivo — Publisher Ad Management for WordPress')">
+    <meta property="og:title" content="@yield('title', 'adIQ by Percivo - Publisher Ad Management for WordPress')">
     <meta property="og:description" content="@yield('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified for WordPress publishers.')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="{{ asset('images/adIQ-white-bg.png') }}">
 
     {{-- Twitter / X --}}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('title', 'adIQ by Percivo — Publisher Ad Management for WordPress')">
+    <meta name="twitter:title" content="@yield('title', 'adIQ by Percivo - Publisher Ad Management for WordPress')">
     <meta name="twitter:description" content="@yield('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified for WordPress publishers.')">
     <meta name="twitter:image" content="{{ asset('images/adIQ-white-bg.png') }}">
 

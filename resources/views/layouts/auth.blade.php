@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Sign In') — adIQ by Percivo</title>
+    <title>@yield('title', 'Sign In') - adIQ by Percivo</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
@@ -13,21 +14,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --teal:    #2DBDB5;
-            --teal-d:  #1FA89F;
-            --dark:    #0D1117;
-            --dark-2:  #161B27;
-            --g50:     #F8F9FB;
-            --g100:    #F1F3F5;
-            --g200:    #E2E5E9;
-            --g400:    #9CA3AF;
-            --g500:    #6B7280;
-            --g700:    #374151;
-            --g900:    #111827;
-            --red:     #DC2626;
+            --teal: #2DBDB5;
+            --teal-d: #1FA89F;
+            --dark: #0D1117;
+            --dark-2: #161B27;
+            --g50: #F8F9FB;
+            --g100: #F1F3F5;
+            --g200: #E2E5E9;
+            --g400: #9CA3AF;
+            --g500: #6B7280;
+            --g700: #374151;
+            --g900: #111827;
+            --red: #DC2626;
         }
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { height: 100%; }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             display: flex;
@@ -48,45 +61,49 @@
             position: relative;
             overflow: hidden;
         }
+
         .auth-left::before {
             content: '';
             position: absolute;
-            top: -120px; left: -120px;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(45,189,181,0.12) 0%, transparent 70%);
+            top: -120px;
+            left: -120px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(45, 189, 181, 0.12) 0%, transparent 70%);
             pointer-events: none;
         }
+
         .auth-left::after {
             content: '';
             position: absolute;
-            bottom: -80px; right: -80px;
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(45,189,181,0.07) 0%, transparent 70%);
+            bottom: -80px;
+            right: -80px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(45, 189, 181, 0.07) 0%, transparent 70%);
             pointer-events: none;
         }
+
         .auth-brand {
             position: relative;
             z-index: 1;
         }
+
         .auth-brand-logo {
             display: flex;
             flex-direction: column;
             gap: 2px;
             margin-bottom: 48px;
         }
-        .auth-brand-logo .adiq {
-            font-size: 26px;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: -0.5px;
-            line-height: 1;
+
+        .auth-brand-logo img {
+            height: 32px;
+            width: auto;
+            display: block;
+            align-self: flex-start;
+            object-fit: contain;
         }
-        .auth-brand-logo .by-percivo {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--teal);
-            letter-spacing: 0.02em;
-        }
+
         .auth-brand h2 {
             font-size: 22px;
             font-weight: 700;
@@ -94,11 +111,13 @@
             line-height: 1.3;
             margin-bottom: 14px;
         }
+
         .auth-brand p {
             font-size: 14px;
-            color: rgba(255,255,255,0.45);
+            color: rgba(255, 255, 255, 0.45);
             line-height: 1.65;
         }
+
         .auth-features {
             position: relative;
             z-index: 1;
@@ -106,11 +125,13 @@
             flex-direction: column;
             gap: 20px;
         }
+
         .auth-feature {
             display: flex;
             align-items: flex-start;
             gap: 12px;
         }
+
         .auth-feature-dot {
             width: 8px;
             height: 8px;
@@ -119,14 +140,16 @@
             flex-shrink: 0;
             margin-top: 5px;
         }
+
         .auth-feature-text {
             font-size: 13px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             line-height: 1.5;
         }
+
         .auth-footer-note {
             font-size: 12px;
-            color: rgba(255,255,255,0.2);
+            color: rgba(255, 255, 255, 0.2);
             position: relative;
             z-index: 1;
         }
@@ -141,16 +164,19 @@
             align-items: center;
             padding: 48px 40px;
         }
+
         .auth-form-wrap {
             width: 100%;
             max-width: 400px;
         }
+
         .auth-form-wrap h1 {
             font-size: 22px;
             font-weight: 700;
             color: var(--g900);
             margin-bottom: 6px;
         }
+
         .auth-form-wrap .auth-sub {
             font-size: 14px;
             color: var(--g500);
@@ -165,11 +191,24 @@
             font-size: 14px;
             line-height: 1.5;
         }
-        .alert-error { background: #FEF2F2; color: var(--red); border: 1px solid #FECACA; }
-        .alert-success { background: #F0FDF4; color: #15803D; border: 1px solid #BBF7D0; }
+
+        .alert-error {
+            background: #FEF2F2;
+            color: var(--red);
+            border: 1px solid #FECACA;
+        }
+
+        .alert-success {
+            background: #F0FDF4;
+            color: #15803D;
+            border: 1px solid #BBF7D0;
+        }
 
         /* Form */
-        .form-group { margin-bottom: 18px; }
+        .form-group {
+            margin-bottom: 18px;
+        }
+
         .form-group label {
             display: block;
             font-size: 13px;
@@ -177,6 +216,7 @@
             color: var(--g700);
             margin-bottom: 6px;
         }
+
         .form-group input {
             width: 100%;
             padding: 11px 14px;
@@ -188,13 +228,19 @@
             transition: border-color .15s, box-shadow .15s;
             background: var(--g50);
         }
+
         .form-group input:focus {
             border-color: var(--teal);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(45,189,181,.12);
+            box-shadow: 0 0 0 3px rgba(45, 189, 181, .12);
             background: #fff;
         }
-        .form-err { font-size: 12px; color: var(--red); margin-top: 4px; }
+
+        .form-err {
+            font-size: 12px;
+            color: var(--red);
+            margin-top: 4px;
+        }
 
         /* Checkbox row */
         .check-row {
@@ -203,6 +249,7 @@
             gap: 8px;
             margin-bottom: 24px;
         }
+
         .check-row input[type="checkbox"] {
             width: 16px;
             height: 16px;
@@ -211,6 +258,7 @@
             accent-color: var(--teal);
             cursor: pointer;
         }
+
         .check-row label {
             font-size: 13px;
             color: var(--g500);
@@ -232,7 +280,10 @@
             transition: background .15s;
             letter-spacing: 0.01em;
         }
-        .btn-auth:hover { background: var(--teal-d); }
+
+        .btn-auth:hover {
+            background: var(--teal-d);
+        }
 
         .auth-switch {
             text-align: center;
@@ -240,16 +291,27 @@
             font-size: 13px;
             color: var(--g500);
         }
+
         .auth-switch a {
             color: var(--teal);
             text-decoration: none;
             font-weight: 500;
         }
-        .auth-switch a:hover { text-decoration: underline; }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
 
         @media (max-width: 768px) {
-            .auth-left { display: none; }
-            .auth-right { padding: 40px 24px; background: var(--g50); }
+            .auth-left {
+                display: none;
+            }
+
+            .auth-right {
+                padding: 40px 24px;
+                background: var(--g50);
+            }
+
             .auth-form-wrap {
                 background: #fff;
                 border: 1px solid var(--g200);
@@ -259,24 +321,20 @@
         }
     </style>
 </head>
+
 <body>
     <div class="auth-left">
         <div class="auth-brand">
             <div class="auth-brand-logo">
-                <span class="adiq">adIQ</span>
-                <span class="by-percivo">by Percivo</span>
+                <img src="{{ asset('images/adIQ-black-bg.png') }}" alt="adIQ by Percivo">
             </div>
-            <h2>Publisher-grade ad management, simplified.</h2>
-            <p>Connect your Google Ad Manager inventory, manage publisher licenses, and deploy ad units across your WordPress properties — all from one platform.</p>
+            <h2>One platform. Every ad network. Full control.</h2>
+            <p>Run Google Ad Manager, AdSense, and third-party networks side by side - with per-property licensing, domain security, and smart ad delivery built in.</p>
         </div>
         <div class="auth-features">
             <div class="auth-feature">
                 <div class="auth-feature-dot"></div>
-                <div class="auth-feature-text">GAM OAuth integration with network-level access control</div>
-            </div>
-            <div class="auth-feature">
-                <div class="auth-feature-dot"></div>
-                <div class="auth-feature-text">Cryptographically signed API — HMAC-SHA256 request verification</div>
+                <div class="auth-feature-text">GAM, AdSense and third-party networks from a single dashboard</div>
             </div>
             <div class="auth-feature">
                 <div class="auth-feature-dot"></div>
@@ -284,7 +342,11 @@
             </div>
             <div class="auth-feature">
                 <div class="auth-feature-dot"></div>
-                <div class="auth-feature-text">CLS-safe lazy loading with IntersectionObserver and GPT refresh</div>
+                <div class="auth-feature-text">Cryptographically signed API - HMAC-SHA256 request verification</div>
+            </div>
+            <div class="auth-feature">
+                <div class="auth-feature-dot"></div>
+                <div class="auth-feature-text">CLS-safe lazy loading with device targeting and viewability refresh</div>
             </div>
         </div>
         <div class="auth-footer-note">&copy; {{ date('Y') }} Percivo. adIQ by Percivo.</div>
@@ -293,15 +355,16 @@
     <div class="auth-right">
         <div class="auth-form-wrap">
             @if($errors->any())
-                <div class="alert alert-error">
-                    @foreach($errors->all() as $err){{ $err }}<br>@endforeach
-                </div>
+            <div class="alert alert-error">
+                @foreach($errors->all() as $err){{ $err }}<br>@endforeach
+            </div>
             @endif
             @if(session('flash'))
-                <div class="alert alert-success">{{ session('flash') }}</div>
+            <div class="alert alert-success">{{ session('flash') }}</div>
             @endif
             @yield('content')
         </div>
     </div>
 </body>
+
 </html>

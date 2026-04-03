@@ -12,7 +12,7 @@ app/storage/
 public/storage
 public/hot
 
-# Runtime generated — never commit
+# Runtime generated - never commit
 storage/framework/cache/
 storage/framework/sessions/
 storage/framework/views/

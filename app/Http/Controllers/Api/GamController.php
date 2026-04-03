@@ -18,7 +18,7 @@ class GamController extends Controller
      * GET /api/v1/gam/adunits?license_key=XXX
      *
      * Fetch ad units from GAM using the stored OAuth token.
-     * The network ID is read from the server-side Site record — the plugin
+     * The network ID is read from the server-side Site record - the plugin
      * must never supply it, so it cannot be spoofed by a modified plugin.
      */
     public function adUnits(Request $request): JsonResponse
@@ -54,7 +54,7 @@ class GamController extends Controller
      *
      * Fetch a single ad unit by its numeric GAM ID.
      * Walks the parent chain to return the full hierarchical path.
-     * The network ID is read server-side — never trusted from the request.
+     * The network ID is read server-side - never trusted from the request.
      */
     public function adUnit(Request $request): JsonResponse
     {

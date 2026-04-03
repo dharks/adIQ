@@ -1,5 +1,5 @@
 @extends('layouts.marketing')
-@section('title', 'Privacy Policy — adIQ by Percivo')
+@section('title', 'Privacy Policy - adIQ by Percivo')
 @section('meta-description', 'Privacy Policy for adIQ by Percivo. Understand how we collect, use, and protect your data.')
 
 @push('head-styles')

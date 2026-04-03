@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Api\LicenseController;
 use App\Models\Site;
 use App\Models\SiteSubdomain;
 use Illuminate\Http\Request;
@@ -23,7 +24,8 @@ class DashboardController extends Controller
         ]);
 
         $site = Auth::user()->sites()->create([
-            'url' => $validated['url'],
+            'url'    => $validated['url'],
+            'domain' => LicenseController::extractBaseDomain($validated['url']),
         ]);
 
         return redirect()->route('dashboard')

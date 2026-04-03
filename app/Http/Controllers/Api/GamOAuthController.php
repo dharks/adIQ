@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\GamConnectedMail;
 use App\Models\GamToken;
 use App\Models\Site;
 use App\Services\GamApiService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class GamOAuthController extends Controller
 {
@@ -130,10 +132,15 @@ class GamOAuthController extends Controller
         // Persist the chosen network ID on the site record
         $oauth = session('gam_oauth');
         if (!empty($oauth['site_id'])) {
-            Site::where('id', $oauth['site_id'])->update([
-                'gam_network_id'   => $networkId,
-                'gam_network_name' => $networkName,
-            ]);
+            $site = Site::find($oauth['site_id']);
+            if ($site) {
+                $site->update([
+                    'gam_network_id'   => $networkId,
+                    'gam_network_name' => $networkName,
+                ]);
+                $site->load('user');
+                Mail::to($site->user->email)->send(new GamConnectedMail($site));
+            }
         }
 
         session()->forget(['gam_oauth', 'gam_networks']);

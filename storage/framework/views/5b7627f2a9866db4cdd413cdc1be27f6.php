@@ -4,10 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $__env->yieldContent('title', 'adIQ by Percivo — Publisher Ad Management for WordPress'); ?></title>
+    <title><?php echo $__env->yieldContent('title', 'adIQ by Percivo - Publisher Ad Management for WordPress'); ?></title>
     <meta name="description" content="<?php echo $__env->yieldContent('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified for WordPress publishers.'); ?>">
     <meta name="robots" content="index, follow">
+    <meta name="author" content="Percivo">
+    <meta name="theme-color" content="#2DBDB5">
     <link rel="canonical" href="<?php echo e(url()->current()); ?>">
+
+    
+    <?php echo $__env->yieldPushContent('structured-data'); ?>
 
     
     <link rel="icon" type="image/png" href="<?php echo e(asset('images/favicon.png')); ?>">
@@ -17,14 +22,14 @@
     
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="adIQ by Percivo">
-    <meta property="og:title" content="<?php echo $__env->yieldContent('title', 'adIQ by Percivo — Publisher Ad Management for WordPress'); ?>">
+    <meta property="og:title" content="<?php echo $__env->yieldContent('title', 'adIQ by Percivo - Publisher Ad Management for WordPress'); ?>">
     <meta property="og:description" content="<?php echo $__env->yieldContent('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified for WordPress publishers.'); ?>">
     <meta property="og:url" content="<?php echo e(url()->current()); ?>">
     <meta property="og:image" content="<?php echo e(asset('images/adIQ-white-bg.png')); ?>">
 
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?php echo $__env->yieldContent('title', 'adIQ by Percivo — Publisher Ad Management for WordPress'); ?>">
+    <meta name="twitter:title" content="<?php echo $__env->yieldContent('title', 'adIQ by Percivo - Publisher Ad Management for WordPress'); ?>">
     <meta name="twitter:description" content="<?php echo $__env->yieldContent('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified for WordPress publishers.'); ?>">
     <meta name="twitter:image" content="<?php echo e(asset('images/adIQ-white-bg.png')); ?>">
 

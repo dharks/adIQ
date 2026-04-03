@@ -16,7 +16,10 @@
     </div>
 
     <div class="form-group">
-        <label for="password">Password</label>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <label for="password" style="margin:0;">Password</label>
+            <a href="{{ route('password.request') }}" style="font-size:12.5px;color:var(--teal);text-decoration:none;">Forgot password?</a>
+        </div>
         <input type="password" id="password" name="password" class="form-input"
                required autocomplete="current-password" placeholder="Your password">
     </div>

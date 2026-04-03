@@ -13,11 +13,11 @@ class ValidateLicenseKey
     /**
      * Validate every protected API request in three layers:
      *
-     *  1. License key — must exist and be activated.
-     *  2. HMAC signature — proves site_url has not been spoofed.
+     *  1. License key - must exist and be activated.
+     *  2. HMAC signature - proves site_url has not been spoofed.
      *     signature = HMAC-SHA256( site_url . "\n" . timestamp, license_key )
      *     timestamp must be within ±5 minutes (prevents replay attacks).
-     *  3. Domain whitelist — site_url's domain must be the license root
+     *  3. Domain whitelist - site_url's domain must be the license root
      *     domain or a registered subdomain prefix (max 5).
      */
     public function handle(Request $request, Closure $next): Response
@@ -53,7 +53,7 @@ class ValidateLicenseKey
             return response()->json(['message' => 'Request expired. Ensure your server clock is accurate.'], 401);
         }
 
-        // Use $key (exact string from request) not $site->license_key — MySQL's
+        // Use $key (exact string from request) not $site->license_key - MySQL's
         // case-insensitive lookup can match a different-cased DB value, which
         // would produce a different HMAC than what the plugin computed.
         $expected = hash_hmac('sha256', $siteUrl . "\n" . $timestamp, $key);
@@ -64,7 +64,7 @@ class ValidateLicenseKey
         }
 
         // ── Layer 3: domain whitelist ─────────────────────────────
-        // At this point site_url is cryptographically verified — we trust it.
+        // At this point site_url is cryptographically verified - we trust it.
         if (!empty($site->domain)) {
             $requestDomain = LicenseController::extractBaseDomain($siteUrl);
 

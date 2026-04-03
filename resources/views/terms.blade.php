@@ -1,5 +1,5 @@
 @extends('layouts.marketing')
-@section('title', 'Terms of Service — adIQ by Percivo')
+@section('title', 'Terms of Service - adIQ by Percivo')
 @section('meta-description', 'Terms of Service for adIQ by Percivo. The terms governing your use of the adIQ platform and WordPress plugin.')
 
 @push('head-styles')

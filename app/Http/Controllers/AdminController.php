@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AccountReinstatedMail;
+use App\Mail\AccountSuspendedMail;
 use App\Models\Site;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class AdminController extends Controller
@@ -59,9 +62,11 @@ class AdminController extends Controller
     {
         if ($site->isSuspended()) {
             $site->update(['suspended_at' => null]);
+            try { Mail::to($site->user->email)->send(new AccountReinstatedMail()); } catch (\Exception $e) { \Illuminate\Support\Facades\Log::error('Mail failed: ' . $e->getMessage()); }
             $message = "Site \"{$site->url}\" has been unsuspended.";
         } else {
             $site->update(['suspended_at' => now()]);
+            try { Mail::to($site->user->email)->send(new AccountSuspendedMail($site)); } catch (\Exception $e) { \Illuminate\Support\Facades\Log::error('Mail failed: ' . $e->getMessage()); }
             $message = "Site \"{$site->url}\" has been suspended.";
         }
 

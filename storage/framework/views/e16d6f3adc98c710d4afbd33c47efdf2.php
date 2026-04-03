@@ -1,5 +1,62 @@
-<?php $__env->startSection('title', 'adIQ by Percivo — Ad Infrastructure for WordPress Publishers'); ?>
+<?php $__env->startSection('title', 'adIQ by Percivo - Ad Infrastructure for WordPress Publishers'); ?>
 <?php $__env->startSection('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified under a single platform built for serious publishers.'); ?>
+
+<?php $__env->startPush('structured-data'); ?>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "adIQ by Percivo",
+        "url": "<?php echo e(url('/')); ?>",
+        "description": "Ad infrastructure for WordPress publishers. Deploy and control Google Ad Manager, AdSense, and third-party ad networks from one centralised platform.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "WordPress",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Percivo",
+            "url": "https://adiq.percivo.io",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "<?php echo e(asset('images/percivo-white-bg.png')); ?>"
+            }
+        },
+        "featureList": [
+            "Google Ad Manager integration",
+            "Google AdSense integration",
+            "Third-party ad network support",
+            "Dynamic in-article ad injection",
+            "Lazy and on-demand ad loading",
+            "Key-value targeting",
+            "Device targeting",
+            "CLS prevention",
+            "HMAC-signed API security",
+            "Per-property licence management"
+        ]
+    }
+</script>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Percivo",
+        "url": "https://adiq.percivo.io",
+        "logo": "<?php echo e(asset('images/percivo-white-bg.png')); ?>",
+        "sameAs": [
+            "https://adiq.percivo.io"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "hello@percivo.io",
+            "contactType": "customer support"
+        }
+    }
+</script>
+<?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('head-styles'); ?>
 <style>
@@ -727,7 +784,7 @@
 </section>
 
 
-<div class="proof-strip">
+<!-- <div class="proof-strip">
     <div class="proof-strip-inner">
         <div class="proof-item">
             <strong>0ms</strong> DB queries on page load
@@ -749,7 +806,7 @@
             <strong>5-minute</strong> file cache, zero latency
         </div>
     </div>
-</div>
+</div> -->
 
 
 <section class="dark" id="features">
@@ -774,6 +831,8 @@
                     <span class="ntag">Ad unit import</span>
                     <span class="ntag">KV targeting</span>
                     <span class="ntag">Network sync</span>
+                    <span class="ntag">Ad Refresh</span>
+                    <span class="ntag"> Headerbiddig Integration </span>
                 </div>
             </div>
 
@@ -845,7 +904,7 @@
                         </div>
                         <div class="cp-text">
                             <h4>Consistent placements across pages</h4>
-                            <p>Header, in-article, sidebar, and footer placements maintain identical behaviour on every page type — posts, archives, and custom templates.</p>
+                            <p>Header, in-article, sidebar, and footer placements maintain identical behaviour on every page type - posts, archives, and custom templates.</p>
                         </div>
                     </div>
                     <div class="control-point">
@@ -879,7 +938,7 @@
                     <div class="cv-dot" style="background:#ff5f57;"></div>
                     <div class="cv-dot" style="background:#febc2e;"></div>
                     <div class="cv-dot" style="background:#28c840;"></div>
-                    <span style="font-size:12px;color:rgba(255,255,255,0.3);margin-left:10px;">Ad Units — my-site.com</span>
+                    <span style="font-size:12px;color:rgba(255,255,255,0.3);margin-left:10px;">Ad Units - my-site.com</span>
                 </div>
                 <div class="cv-body">
                     <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.06em;">Active placements</div>
@@ -1146,9 +1205,9 @@
                     <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
             </a>
-            <a href="https://percivo.io/adIQ" target="_blank" rel="noopener" class="btn-hero-ghost">
-                Learn more at percivo.io
-            </a>
+            <!-- <a href="https://adiq.percivo.io" target="_blank" rel="noopener" class="btn-hero-ghost">
+                Learn more at adiq.percivo.io
+            </a> -->
         </div>
     </div>
 </section>

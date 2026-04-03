@@ -13,7 +13,7 @@ class PluginController extends Controller
     /**
      * GET /api/v1/plugin/version
      *
-     * Public endpoint — returns plugin metadata for WordPress update checks.
+     * Public endpoint - returns plugin metadata for WordPress update checks.
      */
     public function version(Request $request): JsonResponse
     {
@@ -45,8 +45,8 @@ class PluginController extends Controller
     {
         $key  = strtolower(trim($request->query('license_key', '')));
         $site = Site::where('license_key', $key)
-                    ->where('activated', true)
-                    ->first();
+            ->where('activated', true)
+            ->first();
 
         if (!$site || $site->suspended_at !== null) {
             return response()->json([

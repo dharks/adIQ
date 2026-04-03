@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('site_subdomains', function (Blueprint $table) {
             $table->id();
             $table->foreignId('site_id')->constrained()->cascadeOnDelete();
-            // Just the prefix — e.g. "staging", not "staging.bestbuy.com"
+            // Just the prefix - e.g. "staging", not "staging.bestbuy.com"
             $table->string('subdomain', 63);
             $table->timestamps();
 
