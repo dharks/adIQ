@@ -64,27 +64,15 @@
             border-right: 1px solid var(--dark-bd);
         }
         .sidebar-brand {
-            padding: 24px 20px 20px;
+            padding: 20px 20px 18px;
             border-bottom: 1px solid var(--dark-bd);
             text-decoration: none;
             display: block;
         }
-        .sidebar-brand .adiq {
-            font-size: 22px;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: -0.5px;
-            line-height: 1;
+        .sidebar-brand img {
+            height: 26px;
+            width: auto;
             display: block;
-        }
-        .sidebar-brand .by-percivo {
-            font-size: 10px;
-            font-weight: 500;
-            color: var(--teal);
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            display: block;
-            margin-top: 3px;
         }
 
         .sidebar-nav {
@@ -605,8 +593,7 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <a href="<?php echo e(route('dashboard')); ?>" class="sidebar-brand">
-            <span class="adiq">adIQ</span>
-            <span class="by-percivo">by Percivo</span>
+            <img src="<?php echo e(asset('images/adIQ-black-bg.png')); ?>" alt="adIQ by Percivo">
         </a>
 
         <nav class="sidebar-nav">

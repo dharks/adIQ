@@ -51,12 +51,11 @@
         }
         .nav-brand {
             display: flex;
-            flex-direction: column;
+            align-items: center;
             text-decoration: none;
             line-height: 1;
         }
-        .nav-brand .adiq  { font-size: 18px; font-weight: 800; color: #fff; letter-spacing: -0.4px; }
-        .nav-brand .byp   { font-size: 9px; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+        .nav-brand img { height: 28px; width: auto; display: block; }
         .nav-links {
             display: flex;
             align-items: center;
@@ -168,8 +167,9 @@
             gap: 48px;
             margin-bottom: 48px;
         }
-        .footer-brand .adiq  { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -0.4px; }
-        .footer-brand .byp   { font-size: 9px; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; display: block; margin-bottom: 14px; }
+        .footer-brand img { height: 30px; width: auto; display: block; margin-bottom: 14px; }
+        .footer-percivo img { height: 20px; width: auto; opacity: 0.4; display: block; margin-top: 20px; }
+        .footer-percivo span { font-size: 11px; color: rgba(255,255,255,0.25); display: block; margin-top: 5px; }
         .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.65; max-width: 260px; }
         .footer-col h4 { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
         .footer-col a { display: block; font-size: 13.5px; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 10px; transition: color .12s; }
@@ -204,8 +204,7 @@
     <!-- Nav -->
     <nav class="mkt-nav">
         <a href="<?php echo e(route('home')); ?>" class="nav-brand">
-            <span class="adiq">adIQ</span>
-            <span class="byp">by Percivo</span>
+            <img src="<?php echo e(asset('images/adIQ-black-bg.png')); ?>" alt="adIQ by Percivo">
         </a>
         <div class="nav-links">
             <a href="#features" class="nav-link">Features</a>
@@ -227,8 +226,7 @@
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-header">
             <a href="<?php echo e(route('home')); ?>" class="nav-brand" style="text-decoration:none;">
-                <span style="font-size:20px;font-weight:800;color:#fff;letter-spacing:-0.4px;">adIQ</span>
-                <span style="font-size:9px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-top:2px;">by Percivo</span>
+                <img src="<?php echo e(asset('images/adIQ-black-bg.png')); ?>" alt="adIQ by Percivo" style="height:26px;width:auto;">
             </a>
             <button class="mobile-close" onclick="document.getElementById('mobile-menu').classList.remove('open')">&times;</button>
         </div>
@@ -253,9 +251,12 @@
     <footer class="mkt-footer">
         <div class="footer-inner">
             <div class="footer-brand">
-                <span class="adiq">adIQ</span>
-                <span class="byp">by Percivo</span>
-                <p>Publisher-grade ad management for WordPress. Connect Google Ad Manager, manage inventory, and deploy ads without enterprise complexity.</p>
+                <img src="<?php echo e(asset('images/adIQ-black-bg.png')); ?>" alt="adIQ by Percivo">
+                <p>Ad infrastructure for WordPress publishers. Deploy and control any ad, across any network, from one place.</p>
+                <div class="footer-percivo">
+                    <img src="<?php echo e(asset('images/percivo-black-bg.png')); ?>" alt="Percivo">
+                    <span>A Percivo product</span>
+                </div>
             </div>
             <div class="footer-col">
                 <h4>Platform</h4>
