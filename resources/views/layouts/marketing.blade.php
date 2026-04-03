@@ -5,7 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'adIQ by Percivo — Publisher Ad Management for WordPress')</title>
-    <meta name="description" content="@yield('meta-description', 'Connect Google Ad Manager to WordPress. Deploy ad units, manage publisher licenses, and optimize ad inventory — without enterprise complexity.')">
+    <meta name="description" content="@yield('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified for WordPress publishers.')">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Percivo">
+    <meta name="theme-color" content="#2DBDB5">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    {{-- JSON-LD Structured Data --}}
+    @stack('structured-data')
+
+    {{-- Favicon --}}
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
+
+    {{-- Open Graph --}}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="adIQ by Percivo">
+    <meta property="og:title" content="@yield('title', 'adIQ by Percivo — Publisher Ad Management for WordPress')">
+    <meta property="og:description" content="@yield('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified for WordPress publishers.')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset('images/adIQ-white-bg.png') }}">
+
+    {{-- Twitter / X --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', 'adIQ by Percivo — Publisher Ad Management for WordPress')">
+    <meta name="twitter:description" content="@yield('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified for WordPress publishers.')">
+    <meta name="twitter:image" content="{{ asset('images/adIQ-white-bg.png') }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
     <style>

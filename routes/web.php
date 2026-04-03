@@ -21,6 +21,26 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/privacy', 'privacy')->name('privacy');
 Route::view('/terms', 'terms')->name('terms');
 
+// SEO
+Route::get('/sitemap.xml', function () {
+    $urls = [
+        ['loc' => url('/'),           'priority' => '1.0', 'changefreq' => 'weekly'],
+        ['loc' => url('/privacy'),    'priority' => '0.3', 'changefreq' => 'yearly'],
+        ['loc' => url('/terms'),      'priority' => '0.3', 'changefreq' => 'yearly'],
+        ['loc' => url('/register'),   'priority' => '0.8', 'changefreq' => 'monthly'],
+        ['loc' => url('/login'),      'priority' => '0.6', 'changefreq' => 'monthly'],
+    ];
+    return response()->view('sitemap', ['urls' => $urls])
+        ->header('Content-Type', 'application/xml');
+})->name('sitemap');
+
+Route::get('/robots.txt', function () {
+    return response(
+        "User-agent: *\nAllow: /\nDisallow: /dashboard\nDisallow: /admin\nDisallow: /oauth\n\nSitemap: " . url('/sitemap.xml'),
+        200
+    )->header('Content-Type', 'text/plain');
+});
+
 // Guest-only auth routes
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'showForm'])->name('register');

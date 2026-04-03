@@ -2,6 +2,63 @@
 @section('title', 'adIQ by Percivo — Ad Infrastructure for WordPress Publishers')
 @section('meta-description', 'Deploy and control any ad, across any network, from one place. Google Ad Manager, AdSense, and third-party networks unified under a single platform built for serious publishers.')
 
+@push('structured-data')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "adIQ by Percivo",
+    "url": "{{ url('/') }}",
+    "description": "Ad infrastructure for WordPress publishers. Deploy and control Google Ad Manager, AdSense, and third-party ad networks from one centralised platform.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "WordPress",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Percivo",
+        "url": "https://percivo.io",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ asset('images/percivo-white-bg.png') }}"
+        }
+    },
+    "featureList": [
+        "Google Ad Manager integration",
+        "Google AdSense integration",
+        "Third-party ad network support",
+        "Dynamic in-article ad injection",
+        "Lazy and on-demand ad loading",
+        "Key-value targeting",
+        "Device targeting",
+        "CLS prevention",
+        "HMAC-signed API security",
+        "Per-property licence management"
+    ]
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Percivo",
+    "url": "https://percivo.io",
+    "logo": "{{ asset('images/percivo-white-bg.png') }}",
+    "sameAs": [
+        "https://percivo.io"
+    ],
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@percivo.io",
+        "contactType": "customer support"
+    }
+}
+</script>
+@endpush
+
 @push('head-styles')
 <style>
     .container {
