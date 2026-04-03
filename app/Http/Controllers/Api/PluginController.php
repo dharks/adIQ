@@ -48,12 +48,16 @@ class PluginController extends Controller
     public function download(Request $request): BinaryFileResponse|JsonResponse
     {
         $key  = strtolower(trim($request->query('license_key', '')));
-        $site = Site::where('license_key', $key)
-                    ->where('activated', true)
-                    ->first();
+        $site = Site::where('license_key', $key)->first();
 
-        if (!$site || $site->suspended_at !== null) {
-            return response()->json(['message' => 'Invalid or inactive license key.'], 403);
+        // License key must exist and not be suspended.
+        // Activation is NOT required — the user needs the plugin to activate in the first place.
+        if (!$site) {
+            return response()->json(['message' => 'License key not found.'], 404);
+        }
+
+        if ($site->suspended_at !== null) {
+            return response()->json(['message' => 'Account suspended. Please contact support.'], 403);
         }
 
         // Use the latest release's zip path, falling back to config
