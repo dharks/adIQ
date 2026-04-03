@@ -3194,3 +3194,60 @@
 #64 /Users/dharks/Documents/web-projects/adiq-site/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('/Users/dharks/D...')
 #65 {main}
 "} 
+[2026-04-03 03:06:04] staging.ERROR: GAM createCustomTargetingKey failed {"key":"adiq_page_type","status":400,"body":"{
+  \"error\": {
+    \"code\": 400,
+    \"message\": \"Invalid JSON payload received. Unknown name \\\"keyName\\\" at 'custom_targeting_key': Cannot find field.\",
+    \"status\": \"INVALID_ARGUMENT\",
+    \"details\": [
+      {
+        \"@type\": \"type.googleapis.com/google.rpc.BadRequest\",
+        \"fieldViolations\": [
+          {
+            \"field\": \"custom_targeting_key\",
+            \"description\": \"Invalid JSON payload received. Unknown name \\\"keyName\\\" at 'custom_targeting_key': Cannot find field.\"
+          }
+        ]
+      }
+    ]
+  }
+}
+"} 
+[2026-04-03 03:06:05] staging.ERROR: GAM createCustomTargetingKey failed {"key":"adiq_page_title","status":400,"body":"{
+  \"error\": {
+    \"code\": 400,
+    \"message\": \"Invalid JSON payload received. Unknown name \\\"keyName\\\" at 'custom_targeting_key': Cannot find field.\",
+    \"status\": \"INVALID_ARGUMENT\",
+    \"details\": [
+      {
+        \"@type\": \"type.googleapis.com/google.rpc.BadRequest\",
+        \"fieldViolations\": [
+          {
+            \"field\": \"custom_targeting_key\",
+            \"description\": \"Invalid JSON payload received. Unknown name \\\"keyName\\\" at 'custom_targeting_key': Cannot find field.\"
+          }
+        ]
+      }
+    ]
+  }
+}
+"} 
+[2026-04-03 03:06:05] staging.ERROR: GAM createCustomTargetingKey failed {"key":"adiq_category","status":400,"body":"{
+  \"error\": {
+    \"code\": 400,
+    \"message\": \"Invalid JSON payload received. Unknown name \\\"keyName\\\" at 'custom_targeting_key': Cannot find field.\",
+    \"status\": \"INVALID_ARGUMENT\",
+    \"details\": [
+      {
+        \"@type\": \"type.googleapis.com/google.rpc.BadRequest\",
+        \"fieldViolations\": [
+          {
+            \"field\": \"custom_targeting_key\",
+            \"description\": \"Invalid JSON payload received. Unknown name \\\"keyName\\\" at 'custom_targeting_key': Cannot find field.\"
+          }
+        ]
+      }
+    ]
+  }
+}
+"} 
