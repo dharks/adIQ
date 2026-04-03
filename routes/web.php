@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 // Landing page — authenticated users get pushed to dashboard
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Legal pages
+Route::view('/privacy', 'privacy')->name('privacy');
+Route::view('/terms', 'terms')->name('terms');
+
 // Guest-only auth routes
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'showForm'])->name('register');

@@ -37,6 +37,18 @@
                required autocomplete="new-password" placeholder="Repeat password">
     </div>
 
+    <div style="margin-bottom:20px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+            <input type="checkbox" name="terms" id="terms" value="1"
+                   style="width:16px;height:16px;flex-shrink:0;accent-color:var(--teal);cursor:pointer;"
+                   {{ old('terms') ? 'checked' : '' }}>
+            <label for="terms" style="margin:0;font-size:13.5px;font-weight:400;color:var(--g500);cursor:pointer;line-height:1.4;">
+                I agree to the <a href="{{ route('terms') }}" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none;">Terms of Service</a> and <a href="{{ route('privacy') }}" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none;">Privacy Policy</a>
+            </label>
+        </div>
+        @error('terms')<div class="form-err" style="margin-top:6px;">{{ $message }}</div>@enderror
+    </div>
+
     <button type="submit" class="btn-auth">Create Account</button>
 </form>
 

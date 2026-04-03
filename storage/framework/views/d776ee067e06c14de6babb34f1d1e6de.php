@@ -57,6 +57,25 @@ unset($__errorArgs, $__bag); ?>
                required autocomplete="new-password" placeholder="Repeat password">
     </div>
 
+    <div style="margin-bottom:20px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+            <input type="checkbox" name="terms" id="terms" value="1"
+                   style="width:16px;height:16px;flex-shrink:0;accent-color:var(--teal);cursor:pointer;"
+                   <?php echo e(old('terms') ? 'checked' : ''); ?>>
+            <label for="terms" style="margin:0;font-size:13.5px;font-weight:400;color:var(--g500);cursor:pointer;line-height:1.4;">
+                I agree to the <a href="<?php echo e(route('terms')); ?>" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none;">Terms of Service</a> and <a href="<?php echo e(route('privacy')); ?>" target="_blank" rel="noopener" style="color:var(--teal);text-decoration:none;">Privacy Policy</a>
+            </label>
+        </div>
+        <?php $__errorArgs = ['terms'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><div class="form-err" style="margin-top:6px;"><?php echo e($message); ?></div><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+    </div>
+
     <button type="submit" class="btn-auth">Create Account</button>
 </form>
 
