@@ -154,7 +154,7 @@
 @endif
 
 @push('scripts')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/7ks0cciiaqyy42xavs54ffhzabryhac69ofh5d234mc3czfw/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
 tinymce.init({
     selector: '#adiq-changelog',
