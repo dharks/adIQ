@@ -28,7 +28,7 @@
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
             </svg>
             <span style="font-size:14px;font-weight:600;color:var(--g900);">adIQ WordPress Plugin</span>
-            <span class="badge badge-teal">v{{ config('plugin.version') }}</span>
+            <span class="badge badge-teal">v{{ $pluginVersion }}</span>
         </div>
         <p style="font-size:13px;color:var(--g500);margin-left:28px;">Download and install on your WordPress property to activate your license and connect GAM.</p>
     </div>

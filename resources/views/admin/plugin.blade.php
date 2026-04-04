@@ -27,7 +27,7 @@
     </div>
     @if($latest->changelog)
     <div style="margin-top:14px;padding:12px 16px;background:var(--g50);border:1px solid var(--g200);border-radius:8px;font-size:13px;color:var(--g700);line-height:1.6;">
-        {{ $latest->changelog }}
+        {!! $latest->changelog !!}
     </div>
     @endif
     @else
@@ -82,8 +82,7 @@
 
         <div class="form-group" style="margin-bottom:20px;">
             <label>Changelog</label>
-            <textarea name="changelog" rows="4" placeholder="What changed in this version..."
-                      style="width:100%;padding:11px 14px;border:1.5px solid var(--g200);border-radius:8px;font-size:14px;font-family:inherit;color:var(--g900);background:var(--g50);resize:vertical;line-height:1.6;">{{ old('changelog') }}</textarea>
+            <textarea id="adiq-changelog" name="changelog" rows="6">{{ old('changelog') }}</textarea>
             @error('changelog')<div class="form-err">{{ $message }}</div>@enderror
         </div>
 
@@ -128,8 +127,8 @@
                     @endif
                 </td>
                 <td style="font-size:12.5px;color:var(--g600);max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
-                    title="{{ $release->changelog }}">
-                    {{ $release->changelog ? \Illuminate\Support\Str::limit($release->changelog, 60) : '-' }}
+                    title="{{ $release->changelog ? strip_tags($release->changelog) : '' }}">
+                    {{ $release->changelog ? \Illuminate\Support\Str::limit(strip_tags($release->changelog), 60) : '-' }}
                 </td>
                 <td style="font-size:12px;color:var(--g400);white-space:nowrap;">
                     {{ $release->created_at->format('d M Y') }}
@@ -153,5 +152,21 @@
     </table>
 </div>
 @endif
+
+@push('scripts')
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+tinymce.init({
+    selector: '#adiq-changelog',
+    height: 260,
+    menubar: false,
+    plugins: 'lists link',
+    toolbar: 'bold italic | bullist numlist | link | removeformat',
+    content_style: 'body { font-family: inherit; font-size: 14px; color: #111; line-height: 1.6; }',
+    branding: false,
+    promotion: false,
+});
+</script>
+@endpush
 
 @endsection

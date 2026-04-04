@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Api\LicenseController;
+use App\Models\PluginRelease;
 use App\Models\Site;
 use App\Models\SiteSubdomain;
 use Illuminate\Http\Request;
@@ -12,9 +13,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $sites = Auth::user()->sites()->latest()->get();
+        $sites         = Auth::user()->sites()->latest()->get();
+        $latestRelease = PluginRelease::latest();
+        $pluginVersion = $latestRelease?->version ?? config('plugin.version');
 
-        return view('dashboard', compact('sites'));
+        return view('dashboard', compact('sites', 'pluginVersion'));
     }
 
     public function addSite(Request $request)
